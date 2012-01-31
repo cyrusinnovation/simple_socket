@@ -3,7 +3,6 @@ require_relative 'spec_helper'
 describe SimpleSocket do
   let(:host) { "myhost" }
   let(:port) { 1151 }
-  let(:response) { "A Response" }
 
   it "should create a simple socket with a default timeout" do
     socket = SimpleSocket.new(host, port)
@@ -23,9 +22,9 @@ describe SimpleSocket do
   end
 
   it "should return the sockets response" do
-    with(a_stubbed_socket.that_returns(response)) do 
+    with(a_stubbed_socket.that_returns("A response")) do 
       socket = SimpleSocket.new(host, port)
-      socket.write("foo").should == response
+      socket.write("foo").should == "A response"
     end 
   end
 
