@@ -39,4 +39,18 @@ describe SimpleSocket do
       SimpleSocket.new(host, port).write("foo")
     end 
   end
+
+  it "should wrap the socket read with a timeout" do
+    with(a_stubbed_socket) do
+      Timeout.should_receive(:timeout).with(SimpleSocket::DEFAULT_TIMEOUT) 
+      SimpleSocket.new(host, port).write("foo")
+    end 
+  end
+
+  it "should close the socket even if an exceptions is raised" do
+    with(a_stubbed_socket.that_requires_closing) do 
+      Timeout.stub(:timeout).and_raise(Timeout::Error)
+      lambda {SimpleSocket.new(host, port).write("foo")}.should raise_error
+    end 
+  end
 end

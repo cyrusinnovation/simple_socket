@@ -1,4 +1,5 @@
 require 'socket'
+require 'timeout'
 
 class SimpleSocket
   attr_reader :host, :port, :timeout
@@ -11,10 +12,16 @@ class SimpleSocket
   end
 
   def write(message)
-    socket = TCPSocket.new(host, port)
-    socket.puts(message)
-    response = socket.read
-    socket.close
+    begin
+      socket = TCPSocket.new(host, port)
+      socket.puts(message)
+      response = nil
+      Timeout::timeout(timeout) do 
+        response = socket.read
+      end
+    ensure
+      socket.close
+    end
     response
   end
 end
