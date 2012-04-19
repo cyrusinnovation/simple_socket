@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    simple_socket (0.0.0)
+    simple_socket (0.1.0)
 
 GEM
   remote: http://rubygems.org/

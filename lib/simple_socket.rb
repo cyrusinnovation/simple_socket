@@ -20,7 +20,7 @@ class SimpleSocket
         response = socket.read
       end
     ensure
-      socket.close
+      socket.close if socket
     end
     response
   end

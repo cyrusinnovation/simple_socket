@@ -53,4 +53,10 @@ describe SimpleSocket do
       lambda {SimpleSocket.new(host, port).write("foo")}.should raise_error
     end 
   end
+
+  it "should return correct error if no connection is made" do
+    expect {
+      SimpleSocket.new("foobar", 123).write("foo")
+    }.to raise_error(SocketError)
+  end
 end

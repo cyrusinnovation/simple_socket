@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "simple_socket"
-  s.version = "0.1.0"
+  s.version = "0.1.1"
   s.authors = ["Cyrus Innovation LLC"]
   s.email = ["pzimbelman@cyrusinnovation.com"]
   s.homepage = "https://github.com/cyrusinnovation/simple_socket"
